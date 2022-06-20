@@ -36,6 +36,10 @@ export const defaultDarkColors: typeof defaultLightColors = {
   buttonCaretColor: twColors.slate[400],
 };
 
+export type ColorProps = {
+  [K in keyof typeof defaultLightColors]: string;
+};
+
 export const defaultColors = {
   light: defaultLightColors,
   dark: defaultDarkColors,

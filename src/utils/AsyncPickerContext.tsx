@@ -44,12 +44,13 @@ export interface InitialConfigsProps {
   headerContainerStyle: StyleProp<ViewStyle>;
   headerTextStyle: StyleProp<TextStyle>;
   headerTitleStyle: StyleProp<TextStyle>;
-  searchInputStyle: StyleProp<ViewStyle>;
+  searchInputStyle: StyleProp<TextStyle>;
   pickerItemContainerStyle: StyleProp<ViewStyle>;
   pickerItemTextStyle: StyleProp<TextStyle>;
   pickerItemIconStyle: StyleProp<ImageStyle>;
   pickerItemActiveIconStyle: StyleProp<ImageStyle>;
   pickerItemDisabledStyle: StyleProp<ViewStyle>;
+  resultTextStyle: StyleProp<TextStyle>;
 }
 
 const getInitialConfigs = (
@@ -203,6 +204,7 @@ const getInitialConfigs = (
       props?.headerTitleStyle,
     ],
     searchInputStyle: [
+      ...defaultTextStyle,
       {
         height: sizes.searchHeight,
         margin: sizes.screenPadding,
@@ -242,6 +244,7 @@ const getInitialConfigs = (
       props?.pickerItemActiveIconStyle,
     ],
     pickerItemDisabledStyle: [{ opacity: 0.5 }, props?.pickerItemDisabledStyle],
+    resultTextStyle: [...defaultTextStyle, props?.resultTextStyle],
   };
 };
 

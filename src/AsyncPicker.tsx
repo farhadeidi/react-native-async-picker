@@ -9,6 +9,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
+import AsyncPickerResult from './components/AsyncPickerResult';
 import DefaultButton from './components/DefaultButton';
 import Header from './components/Header';
 import LinkButton from './components/LinkButton';
@@ -112,7 +113,7 @@ const AsyncPickerComponent = <T,>({
         }}
         {...modalProps}
       >
-        <SafeAreaView style={[configs.containerStyle]}>
+        <SafeAreaView style={[{ flex: 1 }, configs.containerStyle]}>
           <StatusBar
             barStyle={Platform.OS === 'ios' ? 'light-content' : 'dark-content'}
             {...statusBarProps}
@@ -135,11 +136,16 @@ const AsyncPickerComponent = <T,>({
               placeholder={'Search ...'}
               autoCapitalize="none"
               autoCorrect={false}
-              value={searchQuery}
               clearButtonMode="while-editing"
               selectTextOnFocus
-              onChangeText={setSearchQuery}
               {...searchProps}
+              value={searchProps?.value || searchQuery}
+              onChangeText={(el) => {
+                setSearchQuery(el);
+                if (searchProps?.onChangeText) {
+                  searchProps.onChangeText(el);
+                }
+              }}
               style={[configs.searchInputStyle, searchProps?.style]}
             />
           )}
@@ -178,6 +184,12 @@ const AsyncPickerComponent = <T,>({
                 </>
               );
             }}
+            ListEmptyComponent={
+              <AsyncPickerResult
+                mode={!searchQuery ? 'beforeSearch' : 'afterSearch'}
+                isVisible={!isLoading}
+              />
+            }
             {...props}
           />
         </SafeAreaView>
