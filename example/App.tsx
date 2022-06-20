@@ -4,11 +4,10 @@ import {
   ScrollView,
   StatusBar,
   useColorScheme,
-  View,
 } from 'react-native';
+import Section from './src/components/Section';
 import PickSomeFruits from './src/samples/PickSomeFruits';
 import PickYourAsyncCountry from './src/samples/PickYourAsyncCountry';
-import PickYourAsyncCountryWithDelay from './src/samples/PickYourAsyncCountryWithDelay';
 import PickYourCountry from './src/samples/PickYourCountry';
 import SimplePicker from './src/samples/SimplePicker';
 
@@ -27,23 +26,21 @@ export default function App() {
         barStyle="dark-content"
       />
       <ScrollView>
-        <View style={{ padding: 16 }}>
-          <View style={{ marginBottom: 16 }}>
-            <SimplePicker />
-          </View>
-          <View style={{ marginBottom: 16 }}>
-            <PickYourAsyncCountry />
-          </View>
-          <View style={{ marginBottom: 16 }}>
-            <PickYourAsyncCountryWithDelay />
-          </View>
-          <View style={{ marginBottom: 16 }}>
-            <PickYourCountry />
-          </View>
-          <View style={{ marginBottom: 16 }}>
-            <PickSomeFruits />
-          </View>
-        </View>
+        <Section description="This component uses Async picker">
+          <PickYourAsyncCountry />
+        </Section>
+
+        <Section label="Simple usage">
+          <SimplePicker />
+        </Section>
+
+        <Section description="Single item picker">
+          <PickYourCountry />
+        </Section>
+
+        <Section description="Multiple item picker">
+          <PickSomeFruits />
+        </Section>
       </ScrollView>
     </SafeAreaView>
   );
