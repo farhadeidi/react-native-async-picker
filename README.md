@@ -39,7 +39,7 @@ const [selectedItems, setSelectedItems] = useState([]);
 />;
 ```
 
-[Source on Github](https://github.com/farhadeidi/react-native-async-picker-dev/blob/0.5.1/example/src/samples/PickSomeFruits.tsx)
+[Source on Github](example/src/samples/PickSomeFruits.tsx)
 
 ---
 
@@ -111,9 +111,9 @@ const PickYourAsyncCountry = () => {
 export default PickYourAsyncCountry;
 ```
 
-[Source on Github](https://github.com/farhadeidi/react-native-async-picker-dev/blob/0.5.1/example/src/samples/PickSomeFruits.tsx)
+[Source on Github](example/src/samples/PickSomeFruits.tsx)
 
-[Countries as JSON](https://github.com/farhadeidi/react-native-async-picker-dev/blob/master/example/src/mocks/countries.json)
+[Countries as JSON](example/src/mocks/countries.json)
 
 ---
 
