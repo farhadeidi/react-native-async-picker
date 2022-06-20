@@ -249,6 +249,73 @@ export default PickYourCountry;
 />
 ```
 
+## Tricks
+
+### Custom empty result
+
+```tsx
+<AsyncPicker
+  {...props}
+  ListEmptyComponent={
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      {!searchQuery && (
+        <>
+          <Image source={require('')} style={{ width: 128, height: 128 }} />
+          <Text>Search something ...</Text>
+        </>
+      )}
+
+      {!!searchQuery && !isLoading && (
+        <>
+          <Image source={require('')} style={{ width: 256, height: 256 }} />
+          <Text>No results</Text>
+        </>
+      )}
+    </View>
+  }
+/>
+```
+
+### Pause searching white user is typing
+
+```tsx
+useEffect(() => {
+  const delayFunc = setTimeout(() => {
+    search(query); // Runs this function after 500ms
+  }, 500); // Modify this number to await longer after user stops typing
+
+  return () => clearTimeout(delayFunc);
+}, [query]);
+```
+
+### Custom item component
+
+```tsx
+import { PickerItem } from 'react-native-async-picker';
+
+<AsyncPicker
+  {...props}
+  renderItem={({
+    item,
+    index,
+    isActive,
+    disabled,
+    closeModal, // Call this function to open modal
+    onItemPress, // Call this function onPress with item property
+  }) => {
+    // Use any component that you want
+    return (
+      <PickerItem
+        label={labelExtractor(item)}
+        isActive={isActive}
+        disabled={disabled}
+        onPress={() => onOptionPress(item)}
+      />
+    );
+  }}
+/>;
+```
+
 ## Contributing
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
