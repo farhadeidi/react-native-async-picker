@@ -10,6 +10,7 @@ import PickSomeFruits from './src/samples/PickSomeFruits';
 import PickYourAsyncCountry from './src/samples/PickYourAsyncCountry';
 import PickYourCountry from './src/samples/PickYourCountry';
 import SimplePicker from './src/samples/SimplePicker';
+import Triggers from './src/samples/Triggers';
 
 export default function App() {
   const isDark = useColorScheme() === 'dark';
@@ -32,6 +33,10 @@ export default function App() {
 
         <Section label="Simple usage">
           <SimplePicker />
+        </Section>
+
+        <Section label="Event Triggers">
+          <Triggers />
         </Section>
 
         <Section description="Single item picker">

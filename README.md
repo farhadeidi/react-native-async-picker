@@ -251,6 +251,25 @@ export default PickYourCountry;
 
 ## Tricks
 
+### Ref and Events
+
+```tsx
+import AsyncPicker, { AsyncPickerRef } from 'react-native-async-picker';
+
+const ref = React.useRef<AsyncPickerRef<ItemProps>>(null);
+
+const Events = () => {
+  ref.current?.openModal(); // Open Modal
+  ref.current?.closeModal(); // Close Modal
+  ref.current?.reset(); // Reset value
+  ref.current?.focusOnSearch(); // Focus on search input
+  ref.current?.getLocalSearchQuery(); // Get local input value
+  ref.current?.triggerOptionPress(item); // Trigger press on option with value
+};
+
+<AsyncPicker ref={ref} {...otherProps} />;
+```
+
 ### Custom empty result
 
 ```tsx

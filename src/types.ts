@@ -7,6 +7,7 @@ import type {
   TouchableOpacityProps,
 } from 'react-native';
 import type { HeaderProps } from './components/Header';
+import type { PickerItemProps } from './components/PickerItem';
 
 export interface RenderPickerItemProps<T> extends ListRenderItemInfo<T> {
   onItemPress: (item: T) => void;
@@ -26,6 +27,7 @@ export interface AsyncPickerProps<T>
   limit?: number;
   keyExtractor: (item: T) => string;
   labelExtractor: (item: T) => string;
+  defaultPickerItemProps?: Partial<PickerItemProps>;
   renderItem?: (renderProps: RenderPickerItemProps<T>) => JSX.Element;
   data: T[];
   value: T[];
@@ -50,3 +52,12 @@ export interface DefaultButtonProps extends TouchableOpacityProps {
   label?: string | JSX.Element;
   caretIcon?: JSX.Element;
 }
+
+export type AsyncPickerRef<T> = {
+  openModal: () => void;
+  closeModal: () => void;
+  focusOnSearch: () => void;
+  reset: () => void;
+  getLocalSearchQuery: () => string;
+  triggerOptionPress: (item: T) => void;
+} | null;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, forwardRef } from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -14,52 +14,57 @@ import DefaultButton from './components/DefaultButton';
 import Header from './components/Header';
 import LinkButton from './components/LinkButton';
 import PickerItem from './components/PickerItem';
-import type { AsyncPickerProps } from './types';
+import type { AsyncPickerProps, AsyncPickerRef } from './types';
 import { useAsyncPicker } from './utils/AsyncPickerContext';
 import { isTextIncludedInString } from './utils/helpers';
 
-const AsyncPickerComponent = <T,>({
-  modalProps,
-  statusBarProps,
-  headerProps,
-  renderItem,
-  keyExtractor,
-  labelExtractor,
-  data = [],
-  limit = 0,
-  value = [],
-  onChange,
-  isLoading = false,
-  closeOnSelect = false,
-  onClose,
-  defaultButtonProps,
-  label,
-  isSearchable = true,
-  searchStringExtractor,
-  searchProps,
-  renderButton = ({ openModal }) => {
-    return (
-      <DefaultButton
-        label={label}
-        onPress={openModal}
-        placeholder={
-          value && value.length > 0
-            ? value
-                .map((el) =>
-                  labelExtractor ? labelExtractor(el) : keyExtractor(el)
-                )
-                .join(', ')
-            : undefined
-        }
-        {...defaultButtonProps}
-      />
-    );
-  },
-  ...props
-}: AsyncPickerProps<T>) => {
+const AsyncPickerComponent = <T,>(
+  {
+    modalProps,
+    statusBarProps,
+    headerProps,
+    renderItem,
+    keyExtractor,
+    labelExtractor,
+    data = [],
+    limit = 0,
+    value = [],
+    onChange,
+    isLoading = false,
+    closeOnSelect = false,
+    onClose,
+    defaultButtonProps,
+    label,
+    isSearchable = true,
+    searchStringExtractor,
+    searchProps,
+    defaultPickerItemProps,
+    renderButton = ({ openModal }) => {
+      return (
+        <DefaultButton
+          label={label}
+          onPress={openModal}
+          placeholder={
+            value && value.length > 0
+              ? value
+                  .map((el) =>
+                    labelExtractor ? labelExtractor(el) : keyExtractor(el)
+                  )
+                  .join(', ')
+              : undefined
+          }
+          {...defaultButtonProps}
+        />
+      );
+    },
+    ...props
+  }: AsyncPickerProps<T>,
+  ref: React.ForwardedRef<AsyncPickerRef<T>>
+) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const { configs } = useAsyncPicker();
+  const inputRef = useRef<TextInput | null>(null);
 
   const openModal = () => setIsModalVisible(true);
   const closeModal = () => setIsModalVisible(false);
@@ -100,6 +105,26 @@ const AsyncPickerComponent = <T,>({
     return result || [];
   };
 
+  React.useImperativeHandle(ref, () => ({
+    openModal,
+    closeModal,
+    triggerOptionPress: (el) => {
+      onOptionPress(el);
+    },
+    reset: () => {
+      if (onChange) {
+        onChange([]);
+      }
+    },
+    getLocalSearchQuery: () => searchQuery,
+    focusOnSearch: () => {
+      if (inputRef.current) {
+        console.log('hello focus');
+        inputRef.current.focus();
+      }
+    },
+  }));
+
   return (
     <View>
       {renderButton({ openModal, value })}
@@ -133,6 +158,7 @@ const AsyncPickerComponent = <T,>({
 
           {isSearchable && (
             <TextInput
+              ref={inputRef}
               placeholder={'Search ...'}
               autoCapitalize="none"
               autoCorrect={false}
@@ -179,6 +205,7 @@ const AsyncPickerComponent = <T,>({
                       isActive={isActive}
                       disabled={disabled}
                       onPress={() => onOptionPress(item)}
+                      {...defaultPickerItemProps}
                     />
                   )}
                 </>
@@ -198,4 +225,4 @@ const AsyncPickerComponent = <T,>({
   );
 };
 
-export default AsyncPickerComponent;
+export default forwardRef(AsyncPickerComponent);
