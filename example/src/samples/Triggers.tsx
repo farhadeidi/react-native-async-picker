@@ -38,13 +38,12 @@ const Triggers = () => {
   return (
     <>
       <AsyncPicker
-        label="Where are you from? (Async)"
+        label="Pick some countries? (Async)"
         value={selectedItems}
         ref={ref}
         onChange={setSelectedItems}
         data={data}
         isLoading={isLoading}
-        defaultPickerItemProps={{ asRadio: true }}
         ListEmptyComponent={
           <View
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}

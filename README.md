@@ -2,6 +2,10 @@
 
 A powerful picker for React-Native
 
+|                           Async Picker                            |                           Simple Picker                           | Event Trigger                                                     |
+| :---------------------------------------------------------------: | :---------------------------------------------------------------: | ----------------------------------------------------------------- |
+| ![React Native Async Picker - Demo 1](example/demo-images/01.gif) | ![React Native Async Picker - Demo 1](example/demo-images/02.gif) | ![React Native Async Picker - Demo 1](example/demo-images/03.gif) |
+
 ## Installation
 
 ```sh
