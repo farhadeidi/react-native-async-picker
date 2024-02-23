@@ -1,9 +1,6 @@
 {
-  "extends": "expo/tsconfig.base",
+  "extends": "../tsconfig",
   "compilerOptions": {
-    "strict": true,
-    "paths": {
-      "react-native-async-picker": ["../src/index"]
-    }
+    // Avoid expo-cli auto-generating a tsconfig
   }
 }
