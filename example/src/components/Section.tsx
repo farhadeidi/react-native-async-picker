@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, useColorScheme, View, ViewProps } from 'react-native';
+import { Text, useColorScheme, View } from 'react-native';
+import type { ViewProps } from 'react-native';
 import { twColors } from 'react-native-async-picker';
 
 interface SectionProps extends ViewProps {

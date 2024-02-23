@@ -1,11 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import {
-  ImageStyle,
-  StyleProp,
-  TextStyle,
-  useColorScheme,
-  ViewStyle,
-} from 'react-native';
+import { useColorScheme } from 'react-native';
+
+import type { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { defaultColors, defaultLightColors } from './colors';
 
 export type ColorsProps = typeof defaultLightColors;

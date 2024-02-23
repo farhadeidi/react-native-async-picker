@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, View, ViewProps } from 'react-native';
+import { Text, View } from 'react-native';
+import type { ViewProps } from 'react-native';
 import { useAsyncPicker } from '../utils/AsyncPickerContext';
 
 export interface HeaderProps extends ViewProps {

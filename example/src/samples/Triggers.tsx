@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import AsyncPicker, {
-  helpers,
-  AsyncPickerRef,
-} from 'react-native-async-picker';
+import AsyncPicker, { helpers } from 'react-native-async-picker';
+import type { AsyncPickerRef } from 'react-native-async-picker';
 import SimpleButton from '../components/SimpleButton';
 import allCountries from '../mocks/countries.json';
 

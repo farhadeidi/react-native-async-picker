@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
+import type { TouchableOpacityProps } from 'react-native';
 import { useAsyncPicker } from '../utils/AsyncPickerContext';
 import PickerItemIcon from './PickerItemIcon';
 

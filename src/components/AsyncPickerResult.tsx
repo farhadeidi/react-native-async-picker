@@ -1,5 +1,6 @@
 import React from 'react';
-import { Image, Text, View, ViewProps } from 'react-native';
+import { Image, Text, View } from 'react-native';
+import type { ViewProps } from 'react-native';
 import { useAsyncPicker } from '../utils/AsyncPickerContext';
 
 interface AsyncPickerResultProps extends ViewProps {

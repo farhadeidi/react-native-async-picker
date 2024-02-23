@@ -5,12 +5,12 @@ import {
   StatusBar,
   useColorScheme,
 } from 'react-native';
-import Section from './src/components/Section';
-import PickSomeFruits from './src/samples/PickSomeFruits';
-import PickYourAsyncCountry from './src/samples/PickYourAsyncCountry';
-import PickYourCountry from './src/samples/PickYourCountry';
-import SimplePicker from './src/samples/SimplePicker';
-import Triggers from './src/samples/Triggers';
+import Section from './components/Section';
+import PickSomeFruits from './samples/PickSomeFruits';
+import PickYourAsyncCountry from './samples/PickYourAsyncCountry';
+import PickYourCountry from './samples/PickYourCountry';
+import SimplePicker from './samples/SimplePicker';
+import Triggers from './samples/Triggers';
 
 export default function App() {
   const isDark = useColorScheme() === 'dark';

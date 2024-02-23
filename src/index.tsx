@@ -30,15 +30,13 @@ const AsyncPicker = React.forwardRef(AsyncPickerWrapper);
 
 export {
   AsyncPicker,
-  AsyncPickerProps,
   PickerItem,
-  PickerItemProps,
   helpers,
   twColors,
   defaultLightColors,
   defaultDarkColors,
-  ColorProps,
-  AsyncPickerRef,
 };
+
+export type { AsyncPickerRef, PickerItemProps, AsyncPickerProps, ColorProps };
 
 export default AsyncPicker;
